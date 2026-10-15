@@ -1,6 +1,5 @@
 /*
  * TwinArray Sort example
- * Copyright 2026 Amin Amini
  * SPDX-License-Identifier: Apache-2.0
  */
 
