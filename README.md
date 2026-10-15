@@ -253,7 +253,9 @@ BibTeX:
 ```
 
 A machine-readable [`CITATION.cff`](CITATION.cff) is included for GitHub's
-citation interface.
+citation interface. The journal identifies the publication as article 609; the
+CFF preferred citation retains the DOI, journal, volume and issue without
+misusing the CFF `start` field, which denotes a start page.
 
 ## Licence
 
