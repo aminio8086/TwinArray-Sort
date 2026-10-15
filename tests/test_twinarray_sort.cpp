@@ -1,12 +1,12 @@
 /*
  * TwinArray Sort tests
- * Copyright 2026 Amin Amini
  * SPDX-License-Identifier: Apache-2.0
  */
 
 #include "twinarray_sort.hpp"
 
 #include <algorithm>
+#include <cstddef>
 #include <cstdint>
 #include <cstdlib>
 #include <iostream>
