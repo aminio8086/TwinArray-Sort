@@ -1,0 +1,12 @@
+TwinArray Sort
+Copyright 2026 Amin Amini
+
+This distribution contains a C++20 reference implementation of TwinArray Sort.
+
+TwinArray Sort was introduced in:
+
+Amin Amini,
+"TwinArray Sort: An Ultrarapid Conditional Non-Comparison Integer
+Sorting Algorithm",
+Electronics, Volume 15, Issue 3, Article 609, 2026.
+https://doi.org/10.3390/electronics15030609
