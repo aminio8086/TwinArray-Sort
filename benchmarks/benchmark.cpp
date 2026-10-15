@@ -1,6 +1,5 @@
 /*
  * TwinArray Sort benchmark
- * Copyright 2026 Amin Amini
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -18,6 +17,7 @@
 #include <random>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 #include <utility>
 #include <vector>
 
