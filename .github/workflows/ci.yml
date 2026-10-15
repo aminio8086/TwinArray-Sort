@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Ubuntu (GCC)
+            os: ubuntu-latest
+            cc: gcc
+            cxx: g++
+
+          - name: Ubuntu (Clang)
+            os: ubuntu-latest
+            cc: clang
+            cxx: clang++
+
+          - name: macOS (Apple Clang)
+            os: macos-latest
+            cc: clang
+            cxx: clang++
+
+          - name: Windows (MSVC)
+            os: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Configure CMake (Unix)
+        if: runner.os != 'Windows'
+        env:
+          CC: ${{ matrix.cc }}
+          CXX: ${{ matrix.cxx }}
+        run: >
+          cmake -S . -B build
+          -DCMAKE_BUILD_TYPE=Release
+          -DTWINARRAY_BUILD_TESTS=ON
+          -DTWINARRAY_BUILD_EXAMPLES=ON
+          -DTWINARRAY_BUILD_BENCHMARKS=ON
+
+      - name: Configure CMake (Windows)
+        if: runner.os == 'Windows'
+        run: >
+          cmake -S . -B build
+          -DTWINARRAY_BUILD_TESTS=ON
+          -DTWINARRAY_BUILD_EXAMPLES=ON
+          -DTWINARRAY_BUILD_BENCHMARKS=ON
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      - name: Test
+        run: ctest --test-dir build -C Release --output-on-failure
+
+  sanitizers:
+    name: Ubuntu (ASan + UBSan)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Configure
+        env:
+          CC: clang
+          CXX: clang++
+        run: >
+          cmake -S . -B build-san
+          -DCMAKE_BUILD_TYPE=Debug
+          -DTWINARRAY_BUILD_TESTS=ON
+          -DTWINARRAY_BUILD_EXAMPLES=OFF
+          -DTWINARRAY_BUILD_BENCHMARKS=OFF
+          -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g -O1"
+          -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"
+
+      - name: Build
+        run: cmake --build build-san
+
+      - name: Test under sanitizers
+        env:
+          ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+          UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+        run: ctest --test-dir build-san --output-on-failure
