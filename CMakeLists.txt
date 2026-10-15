@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.20)
 
 project(
     TwinArraySort
-    VERSION 1.0.0
     DESCRIPTION "Reference C++20 implementation of TwinArray Sort"
     HOMEPAGE_URL "https://doi.org/10.3390/electronics15030609"
     LANGUAGES CXX
