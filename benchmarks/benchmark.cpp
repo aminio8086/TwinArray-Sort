@@ -23,6 +23,21 @@
 
 namespace {
 
+std::uint64_t parse_nonnegative_u64(const char* text, const char* name)
+{
+    const std::string_view input{text};
+    if (input.empty() || input.front() == '-') {
+        throw std::invalid_argument(std::string(name) + " must be a non-negative integer.");
+    }
+
+    std::size_t parsed = 0;
+    const std::uint64_t value = std::stoull(std::string(input), &parsed);
+    if (parsed != input.size()) {
+        throw std::invalid_argument(std::string(name) + " must be a non-negative integer.");
+    }
+    return value;
+}
+
 std::size_t checked_size_t(const std::uint64_t value, const char* name)
 {
     if (!std::in_range<std::size_t>(value)) {
@@ -189,9 +204,9 @@ int main(int argc, char* argv[])
         constexpr std::size_t warmup_runs = 2;
         constexpr std::uint64_t seed = 42;
 
-        if (argc >= 2) n = checked_size_t(std::stoull(argv[1]), "n");
-        if (argc >= 3) k = std::stoull(argv[2]);
-        if (argc >= 4) runs = checked_size_t(std::stoull(argv[3]), "runs");
+        if (argc >= 2) n = checked_size_t(parse_nonnegative_u64(argv[1], "n"), "n");
+        if (argc >= 3) k = parse_nonnegative_u64(argv[2], "k");
+        if (argc >= 4) runs = checked_size_t(parse_nonnegative_u64(argv[3], "runs"), "runs");
         if (argc > 4) {
             throw std::invalid_argument("Usage: twinarray_benchmark [n] [k] [runs]");
         }
