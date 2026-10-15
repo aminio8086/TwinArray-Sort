@@ -78,6 +78,13 @@ Or specify:
 ./build/twinarray_benchmark [n] [k] [runs]
 ```
 
+For the combined Unique and Duplicate benchmark, parameters must satisfy:
+
+- `n >= 2`;
+- `n <= k + 1`;
+- `runs >= 1`;
+- all command-line values must be non-negative integers.
+
 For example:
 
 ```bash
