@@ -8,7 +8,6 @@
  * Electronics 15(3), 609, 2026.
  * https://doi.org/10.3390/electronics15030609
  *
- * Copyright 2026 Amin Amini
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -19,7 +18,6 @@
 #include <concepts>
 #include <cstddef>
 #include <limits>
-#include <memory>
 #include <stdexcept>
 #include <type_traits>
 #include <utility>
