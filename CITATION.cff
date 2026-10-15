@@ -4,7 +4,6 @@ message: >-
   please cite the original Electronics paper.
 title: TwinArray Sort
 type: software
-version: 1.0.0
 license: Apache-2.0
 repository-code: https://github.com/aminio8086/TwinArray-Sort
 authors:
@@ -23,8 +22,5 @@ preferred-citation:
   year: 2026
   volume: 15
   issue: 3
-  # CFF 1.2.0 has no dedicated article-number field. MDPI identifies this
-  # publication as Article 609; start is used so generated citations include 609.
-  start: 609
   doi: 10.3390/electronics15030609
   url: https://doi.org/10.3390/electronics15030609
