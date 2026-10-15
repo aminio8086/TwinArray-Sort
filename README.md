@@ -194,8 +194,8 @@ The repository includes:
 - domain-overflow and vector-capacity guards;
 - randomised comparisons with `std::sort`;
 - exhaustive enumeration of small domains;
-- CI across GCC, Clang, Apple Clang and MSVC;
-- ASan + UBSan validation on Linux.
+- CI configured for GCC, Clang, Apple Clang and MSVC;
+- an additional Linux ASan + UBSan CI job.
 
 ## Benchmarking
 
@@ -254,6 +254,8 @@ BibTeX:
 
 A machine-readable [`CITATION.cff`](CITATION.cff) is included for GitHub's
 citation interface. The journal identifies the publication as article 609; the
+CFF preferred citation retains the DOI, journal, volume and issue without
+misusing the CFF `start` field, which denotes a start page. The journal identifies the publication as article 609; the
 CFF preferred citation retains the DOI, journal, volume and issue without
 misusing the CFF `start` field, which denotes a start page.
 
