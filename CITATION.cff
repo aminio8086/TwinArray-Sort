@@ -4,6 +4,8 @@ message: >-
   please cite the original Electronics paper.
 title: TwinArray Sort
 type: software
+version: 1.0.0
+date-released: 2026-10-17
 license: Apache-2.0
 repository-code: https://github.com/aminio8086/TwinArray-Sort
 authors:
