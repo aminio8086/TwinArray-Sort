@@ -7,6 +7,8 @@ and releases will use [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-17
+
 ### Added
 - Header-only C++20 reference implementation of TwinArray Sort.
 - Copy-returning and direct-output reconstruction APIs.
